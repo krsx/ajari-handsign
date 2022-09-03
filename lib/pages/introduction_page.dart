@@ -37,10 +37,12 @@ class _IntroductionPageState extends State<IntroductionPage> {
           ],
         ),
         child: ElevatedButton(
-          onPressed: () => controller.nextPage(
-            duration: const Duration(microseconds: 500),
-            curve: Curves.easeInOut,
-          ),
+          onPressed: () => isLastPage
+              ? () {}
+              : controller.nextPage(
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeInOut,
+                ),
           style: ButtonStyle(
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
@@ -55,10 +57,106 @@ class _IntroductionPageState extends State<IntroductionPage> {
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Center(
               child: Text(
-                "Masuk",
+                "Selanjutnya",
                 style: mediumTextStyle.copyWith(
                   fontSize: 22,
                   color: whiteColor,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    Widget buttonLogin() {
+      return Expanded(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(28),
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(0, 12),
+                blurRadius: 48,
+                color: purpleColor.withOpacity(0.6),
+              ),
+            ],
+          ),
+          child: ElevatedButton(
+            onPressed: () => Navigator.pushNamed(
+              context,
+              '/login',
+            ),
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(28),
+                ),
+              ),
+              backgroundColor: MaterialStateProperty.all(purpleColor),
+              elevation: MaterialStateProperty.all(0),
+            ),
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Center(
+                child: Text(
+                  "Masuk",
+                  style: mediumTextStyle.copyWith(
+                    fontSize: 22,
+                    color: whiteColor,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    Widget buttonRegister() {
+      return Expanded(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(28),
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(0, 12),
+                blurRadius: 48,
+                color: purpleColor.withOpacity(0.6),
+              ),
+            ],
+          ),
+          child: ElevatedButton(
+            onPressed: () => isLastPage
+                ? () {}
+                : controller.nextPage(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  ),
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(28),
+                  side: BorderSide(
+                    width: 2,
+                    color: purpleColor,
+                  ),
+                ),
+              ),
+              backgroundColor: MaterialStateProperty.all(whiteColor),
+              elevation: MaterialStateProperty.all(0),
+            ),
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Center(
+                child: Text(
+                  "Daftar",
+                  style: mediumTextStyle.copyWith(
+                    fontSize: 22,
+                    color: purpleColor,
+                  ),
                 ),
               ),
             ),
@@ -76,16 +174,28 @@ class _IntroductionPageState extends State<IntroductionPage> {
           onPageChanged: (value) {
             setState(() => isLastPage = value == 2);
           },
-          children: [
-            BuildIntroductionPage(),
-            BuildIntroductionPage(),
-            BuildIntroductionPage(),
+          children: const [
+            BuildIntroductionPage(
+              text:
+                  "Bahasa isyarat penting dalam memudahkan komunikasi dengan mereka yang tuli",
+              imageUrl: "assets/images/intro1.png",
+            ),
+            BuildIntroductionPage(
+              text:
+                  " Kemudahan dalam mempelajari bahasa isyarat kapanpun dan dimanapun",
+              imageUrl: "assets/images/intro2.png",
+            ),
+            BuildIntroductionPage(
+              text:
+                  "Ayo mulai tingkatkan kemampuan bahasa isyarat bersama Ajari ",
+              imageUrl: "assets/images/intro3.png",
+            ),
           ],
         ),
         bottomSheet: Container(
           color: Colors.white,
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          height: 150,
+          height: 170,
           width: double.infinity,
           child: Column(
             children: [
@@ -109,7 +219,20 @@ class _IntroductionPageState extends State<IntroductionPage> {
               const SizedBox(
                 height: 48,
               ),
-              buttonNext(),
+              isLastPage
+                  ? Row(
+                      children: [
+                        buttonLogin(),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        buttonRegister()
+                      ],
+                    )
+                  : buttonNext(),
+              const SizedBox(
+                height: 48,
+              ),
             ],
           ),
         ),
