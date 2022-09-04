@@ -12,11 +12,14 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   late FocusNode focusNodeEmail;
+  late FocusNode focusNodePassword;
+  bool isRemember = false;
 
   @override
   void initState() {
     // TODO: implement initState
     focusNodeEmail = FocusNode();
+    focusNodePassword = FocusNode();
     super.initState();
   }
 
@@ -24,7 +27,15 @@ class _LoginPageState extends State<LoginPage> {
   void dispose() {
     // TODO: implement dispose
     focusNodeEmail.dispose();
+    focusNodePassword.dispose();
     super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+
+    super.didChangeDependencies();
   }
 
   @override
@@ -49,7 +60,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Image.asset(
                 "assets/images/icon_email.png",
-                width: 18,
+                width: 16,
+                // color: (emailController.text != "") ? blackColor : Colors.amber,
               ),
               const SizedBox(
                 width: 10,
@@ -70,10 +82,53 @@ class _LoginPageState extends State<LoginPage> {
       );
     }
 
+    Widget passwordTextField() {
+      return GestureDetector(
+        onTap: () {
+          focusNodePassword.requestFocus();
+        },
+        child: Container(
+          height: 60,
+          width: double.infinity - 48,
+          decoration: BoxDecoration(
+            // color: (focusNodeEmail.hasFocus) ? purpleColor : grayColor,
+            color: grayColor,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              const SizedBox(
+                width: 20,
+              ),
+              Image.asset(
+                "assets/images/icon_password.png",
+                width: 16,
+                // color: (emailController.text != "") ? blackColor : Colors.amber,
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: TextField(
+                  obscureText: true,
+                  focusNode: focusNodePassword,
+                  controller: passwordController,
+                  style: regulerTextStyle,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      );
+    }
+
     Widget buttonLogin() {
       return Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(28),
+          borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
               offset: Offset(0, 12),
@@ -87,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
           style: ButtonStyle(
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(28),
+                borderRadius: BorderRadius.circular(20),
               ),
             ),
             backgroundColor: MaterialStateProperty.all(purpleColor),
@@ -107,6 +162,165 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         ),
+      );
+    }
+
+    Widget buttonRemember() {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                isRemember = !isRemember;
+              });
+            },
+            child: (isRemember)
+                ? Container(
+                    width: 22,
+                    height: 22,
+                    child: Image.asset(
+                      "assets/images/icon_remember.png",
+                    ),
+                  )
+                : Container(
+                    width: 22,
+                    height: 22,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: grayColor,
+                      border: Border.all(
+                        color: purpleColor,
+                        width: 2,
+                      ),
+                    ),
+                  ),
+          ),
+          const SizedBox(
+            width: 8,
+          ),
+          Text(
+            "Ingat saya",
+            style: regulerTextStyle,
+          )
+        ],
+      );
+    }
+
+    Widget divider() {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 120,
+            height: 1,
+            decoration: BoxDecoration(
+              color: darkGrayColor,
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          Text(
+            "atau",
+            style: mediumTextStyle.copyWith(
+              color: darkGrayColor,
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          Container(
+            width: 120,
+            height: 1,
+            decoration: BoxDecoration(
+              color: darkGrayColor,
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
+        ],
+      );
+    }
+
+    Widget buttonLoginGoogle() {
+      return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ElevatedButton(
+          onPressed: () {},
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: BorderSide(
+                  width: 2,
+                  color: blackColor,
+                ),
+              ),
+            ),
+            backgroundColor: MaterialStateProperty.all(whiteColor),
+            elevation: MaterialStateProperty.all(0),
+          ),
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(vertical: 13),
+            child: Center(
+                child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "assets/images/Google.png",
+                  width: 20,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  "Masuk dengan Google",
+                  style: mediumTextStyle.copyWith(fontSize: 16),
+                )
+              ],
+            )),
+          ),
+        ),
+      );
+    }
+
+    Widget registerTextButton() {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Belum mempunyai akun? ",
+            style: regulerTextStyle.copyWith(
+              color: darkGrayColor,
+              fontSize: 12,
+            ),
+          ),
+          TextButton(
+            onPressed: () {},
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              overlayColor: MaterialStateProperty.all(
+                purpleColor.withOpacity(0.25),
+              ),
+              shadowColor: MaterialStateProperty.all(purpleColor),
+            ),
+            child: Text(
+              "Daftar sekarang",
+              style: regulerTextStyle.copyWith(
+                color: purpleColor,
+                fontSize: 12,
+              ),
+            ),
+          )
+        ],
       );
     }
 
@@ -147,24 +361,26 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(
                 height: 20,
               ),
-              emailTextField(),
+              passwordTextField(),
               const SizedBox(
                 height: 10,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 22,
-                    height: 22,
-                    decoration: BoxDecoration(color: grayColor),
-                  )
-                ],
-              ),
+              buttonRemember(),
               const SizedBox(
                 height: 10,
               ),
               buttonLogin(),
+              const Spacer(),
+              divider(),
+              const Spacer(),
+              buttonLoginGoogle(),
+              const SizedBox(
+                height: 20,
+              ),
+              registerTextButton(),
+              const SizedBox(
+                height: 48,
+              ),
             ],
           ),
         ),

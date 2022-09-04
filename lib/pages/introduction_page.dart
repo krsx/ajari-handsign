@@ -27,7 +27,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
     Widget buttonNext() {
       return Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(28),
+          borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
               offset: Offset(0, 12),
@@ -46,7 +46,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
           style: ButtonStyle(
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(28),
+                borderRadius: BorderRadius.circular(20),
               ),
             ),
             backgroundColor: MaterialStateProperty.all(purpleColor),
@@ -73,7 +73,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
       return Expanded(
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(28),
+            borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
                 offset: Offset(0, 12),
@@ -90,7 +90,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
             style: ButtonStyle(
               shape: MaterialStateProperty.all(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(28),
+                  borderRadius: BorderRadius.circular(20),
                 ),
               ),
               backgroundColor: MaterialStateProperty.all(purpleColor),
@@ -118,7 +118,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
       return Expanded(
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(28),
+            borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
                 offset: Offset(0, 12),
@@ -137,7 +137,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
             style: ButtonStyle(
               shape: MaterialStateProperty.all(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(28),
+                  borderRadius: BorderRadius.circular(20),
                   side: BorderSide(
                     width: 2,
                     color: purpleColor,
