@@ -1,14 +1,15 @@
-import 'package:ajari_app_v2/utils/theme.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+import '../utils/theme.dart';
+
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   late FocusNode focusNodeEmail;
@@ -125,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
       );
     }
 
-    Widget buttonLogin() {
+    Widget buttonRegister() {
       return Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -138,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () => Navigator.pushNamed(context, '/profile'),
           style: ButtonStyle(
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
@@ -153,7 +154,7 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Center(
               child: Text(
-                "Masuk",
+                "Daftar",
                 style: mediumTextStyle.copyWith(
                   fontSize: 22,
                   color: whiteColor,
@@ -293,14 +294,14 @@ class _LoginPageState extends State<LoginPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "Belum mempunyai akun?",
+            "Sudah mempunyai akun?",
             style: regulerTextStyle.copyWith(
               color: darkGrayColor,
               fontSize: 12,
             ),
           ),
           TextButton(
-            onPressed: () => Navigator.pushNamed(context, '/register'),
+            onPressed: () => Navigator.pushNamed(context, '/login'),
             style: ButtonStyle(
               shape: MaterialStateProperty.all(
                 RoundedRectangleBorder(
@@ -313,7 +314,7 @@ class _LoginPageState extends State<LoginPage> {
               shadowColor: MaterialStateProperty.all(purpleColor),
             ),
             child: Text(
-              "Daftar sekarang",
+              "Masuk sekarang",
               style: regulerTextStyle.copyWith(
                 color: purpleColor,
                 fontSize: 12,
@@ -349,7 +350,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 40,
               ),
               Text(
-                "Masuk ke \nakun Anda",
+                "Buat akun \nAnda",
                 style: semiBoldTextStyle.copyWith(
                   fontSize: 32,
                 ),
@@ -369,7 +370,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(
                 height: 10,
               ),
-              buttonLogin(),
+              buttonRegister(),
               const Spacer(),
               divider(),
               const Spacer(),

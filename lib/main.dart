@@ -1,5 +1,7 @@
 import 'package:ajari_app_v2/pages/introduction_page.dart';
 import 'package:ajari_app_v2/pages/login_page.dart';
+import 'package:ajari_app_v2/pages/profile_page.dart';
+import 'package:ajari_app_v2/pages/register_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,6 +19,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/intro': (context) => const IntroductionPage(),
         '/login': (context) => const LoginPage(),
+        '/register': (context) => const RegisterPage(),
+        '/profile': (context) => const ProfilePage(),
       },
       theme: ThemeData(
         // This is the theme of your application.

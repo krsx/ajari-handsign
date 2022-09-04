@@ -128,12 +128,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
             ],
           ),
           child: ElevatedButton(
-            onPressed: () => isLastPage
-                ? () {}
-                : controller.nextPage(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                  ),
+            onPressed: () => Navigator.pushNamed(context, '/register'),
             style: ButtonStyle(
               shape: MaterialStateProperty.all(
                 RoundedRectangleBorder(
