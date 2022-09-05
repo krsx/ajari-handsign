@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "755663777020",
+    "project_id": "ajari-handsign-app-9ca9d",
+    "storage_bucket": "ajari-handsign-app-9ca9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755663777020:android:4e222bc754d85d2e767b79",
+        "android_client_info": {
+          "package_name": "com.example.ajari_app_v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "755663777020-2gi8d188kq6ue74hanu914st7uihvfbq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLYrYdOG0rVxP-3w_6pi7rin9LX6IUQ7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "755663777020-2gi8d188kq6ue74hanu914st7uihvfbq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
