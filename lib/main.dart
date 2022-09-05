@@ -1,11 +1,25 @@
+import 'package:ajari_app_v2/helper/auth_services.dart';
+import 'package:ajari_app_v2/pages/wrapper.dart';
 import 'package:ajari_app_v2/pages/introduction_page.dart';
 import 'package:ajari_app_v2/pages/login_page.dart';
 import 'package:ajari_app_v2/pages/profile_page.dart';
 import 'package:ajari_app_v2/pages/register_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  return runApp(
+    StreamProvider.value(
+      value: AuthServices.firebaseUserStream,
+      initialData: null,
+      child: const MaterialApp(
+        home: MyApp(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,6 +35,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
         '/profile': (context) => const ProfilePage(),
+        '/wrapper': (context) => const Wrapper(),
       },
       theme: ThemeData(
         // This is the theme of your application.

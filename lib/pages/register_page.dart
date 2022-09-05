@@ -1,3 +1,4 @@
+import 'package:ajari_app_v2/helper/auth_services.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/theme.dart';
@@ -150,7 +151,12 @@ class _RegisterPageState extends State<RegisterPage> {
           ],
         ),
         child: ElevatedButton(
-          onPressed: () => Navigator.pushNamed(context, '/profile'),
+          onPressed: () async {
+            await AuthServices.signUp(
+              emailController.text,
+              passwordController.text,
+            );
+          },
           style: ButtonStyle(
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
