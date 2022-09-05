@@ -10,6 +10,36 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  TextEditingController controllerUsername = TextEditingController();
+  TextEditingController controllerEmail = TextEditingController();
+  TextEditingController controllerTelp = TextEditingController();
+  late FocusNode focusNodeEmail;
+  late FocusNode focusNodeUsername;
+  late FocusNode focusNodeTelp;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    focusNodeEmail = FocusNode();
+    focusNodeUsername = FocusNode();
+    focusNodeTelp = FocusNode();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    focusNodeEmail.dispose();
+    focusNodeUsername.dispose();
+    focusNodeTelp.dispose();
+
+    controllerUsername.dispose();
+    controllerEmail.dispose();
+    controllerTelp.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget profilePicture() {
@@ -57,8 +87,192 @@ class _ProfilePageState extends State<ProfilePage> {
       );
     }
 
+    Widget usernameTextField() {
+      return GestureDetector(
+        onTap: () {
+          focusNodeUsername.requestFocus();
+        },
+        child: Container(
+          height: 60,
+          width: double.infinity - 48,
+          decoration: BoxDecoration(
+            // color: (focusNodeEmail.hasFocus) ? purpleColor : grayColor,
+            color: grayColor,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              const SizedBox(
+                width: 20,
+              ),
+              Image.asset(
+                "assets/images/icon_user.png",
+                width: 16,
+                // color: (emailController.text != "") ? blackColor : Colors.amber,
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: TextField(
+                  obscureText: true,
+                  focusNode: focusNodeUsername,
+                  controller: controllerUsername,
+                  style: regulerTextStyle,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Username',
+                    hintStyle: regulerTextStyle.copyWith(
+                      color: darkGrayColor,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      );
+    }
+
+    Widget emailTextField() {
+      return GestureDetector(
+        onTap: () {
+          focusNodeEmail.requestFocus();
+        },
+        child: Container(
+          height: 60,
+          width: double.infinity - 48,
+          decoration: BoxDecoration(
+            // color: (focusNodeEmail.hasFocus) ? purpleColor : grayColor,
+            color: grayColor,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              const SizedBox(
+                width: 20,
+              ),
+              Image.asset(
+                "assets/images/icon_email.png",
+                width: 16,
+                // color: (emailController.text != "") ? blackColor : Colors.amber,
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: TextField(
+                  obscureText: true,
+                  focusNode: focusNodeEmail,
+                  controller: controllerEmail,
+                  style: regulerTextStyle,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Email',
+                    hintStyle: regulerTextStyle.copyWith(
+                      color: darkGrayColor,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      );
+    }
+
+    Widget telpTextField() {
+      return GestureDetector(
+        onTap: () {
+          focusNodeTelp.requestFocus();
+        },
+        child: Container(
+          height: 60,
+          width: double.infinity - 48,
+          decoration: BoxDecoration(
+            // color: (focusNodeEmail.hasFocus) ? purpleColor : grayColor,
+            color: grayColor,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              const SizedBox(
+                width: 20,
+              ),
+              Image.asset(
+                "assets/images/icon_call.png",
+                width: 16,
+                // color: (emailController.text != "") ? blackColor : Colors.amber,
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: TextField(
+                  keyboardType: TextInputType.number,
+                  obscureText: true,
+                  focusNode: focusNodeTelp,
+                  controller: controllerTelp,
+                  style: regulerTextStyle,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Nomor Telepon',
+                    hintStyle: regulerTextStyle.copyWith(
+                      color: darkGrayColor,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      );
+    }
+
+    Widget buttonSaveProfile() {
+      return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(0, 12),
+              blurRadius: 48,
+              color: purpleColor.withOpacity(0.6),
+            ),
+          ],
+        ),
+        child: ElevatedButton(
+          onPressed: () {},
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+            backgroundColor: MaterialStateProperty.all(purpleColor),
+            elevation: MaterialStateProperty.all(0),
+          ),
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            child: Center(
+              child: Text(
+                "Simpan",
+                style: mediumTextStyle.copyWith(
+                  fontSize: 22,
+                  color: whiteColor,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: whiteColor,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
@@ -89,6 +303,20 @@ class _ProfilePageState extends State<ProfilePage> {
               profilePicture(),
               const SizedBox(
                 height: 24,
+              ),
+              usernameTextField(),
+              const SizedBox(
+                height: 20,
+              ),
+              emailTextField(),
+              const SizedBox(
+                height: 20,
+              ),
+              telpTextField(),
+              Spacer(),
+              buttonSaveProfile(),
+              const SizedBox(
+                height: 48,
               ),
             ],
           ),

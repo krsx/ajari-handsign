@@ -28,6 +28,8 @@ class _LoginPageState extends State<LoginPage> {
     // TODO: implement dispose
     focusNodeEmail.dispose();
     focusNodePassword.dispose();
+    emailController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -73,6 +75,10 @@ class _LoginPageState extends State<LoginPage> {
                   style: regulerTextStyle,
                   decoration: InputDecoration(
                     border: InputBorder.none,
+                    hintText: 'Username',
+                    hintStyle: regulerTextStyle.copyWith(
+                      color: darkGrayColor,
+                    ),
                   ),
                 ),
               )
@@ -116,6 +122,10 @@ class _LoginPageState extends State<LoginPage> {
                   style: regulerTextStyle,
                   decoration: InputDecoration(
                     border: InputBorder.none,
+                    hintText: 'Password',
+                    hintStyle: regulerTextStyle.copyWith(
+                      color: darkGrayColor,
+                    ),
                   ),
                 ),
               )

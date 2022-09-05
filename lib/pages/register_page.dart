@@ -29,6 +29,9 @@ class _RegisterPageState extends State<RegisterPage> {
     // TODO: implement dispose
     focusNodeEmail.dispose();
     focusNodePassword.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+
     super.dispose();
   }
 
@@ -74,6 +77,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   style: regulerTextStyle,
                   decoration: InputDecoration(
                     border: InputBorder.none,
+                    hintText: 'Username',
+                    hintStyle: regulerTextStyle.copyWith(
+                      color: darkGrayColor,
+                    ),
                   ),
                 ),
               )
@@ -117,6 +124,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   style: regulerTextStyle,
                   decoration: InputDecoration(
                     border: InputBorder.none,
+                    hintText: 'Password',
+                    hintStyle: regulerTextStyle.copyWith(
+                      color: darkGrayColor,
+                    ),
                   ),
                 ),
               )
@@ -364,11 +375,11 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               passwordTextField(),
               const SizedBox(
-                height: 10,
+                height: 14,
               ),
               buttonRemember(),
               const SizedBox(
-                height: 10,
+                height: 14,
               ),
               buttonRegister(),
               const Spacer(),
