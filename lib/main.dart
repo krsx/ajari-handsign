@@ -1,4 +1,5 @@
 import 'package:ajari_app_v2/helper/auth_services.dart';
+import 'package:ajari_app_v2/pages/home_page.dart';
 import 'package:ajari_app_v2/pages/wrapper.dart';
 import 'package:ajari_app_v2/pages/introduction_page.dart';
 import 'package:ajari_app_v2/pages/login_page.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         '/register': (context) => const RegisterPage(),
         '/profile': (context) => const ProfilePage(),
         '/wrapper': (context) => const Wrapper(),
+        '/home': (context) => const HomePage(),
       },
       theme: ThemeData(
         // This is the theme of your application.

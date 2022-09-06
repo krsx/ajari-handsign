@@ -1,5 +1,8 @@
+import 'package:ajari_app_v2/helper/auth_services.dart';
 import 'package:ajari_app_v2/utils/theme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -148,7 +151,29 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            AuthServices.signIn(
+              emailController.text,
+              passwordController.text,
+            );
+
+            // User? firebaseUser = Provider.of<User?>(context);
+            // if (firebaseUser != null) {
+            //   Navigator.pushNamed(context, '/profile');
+            // }
+            // print("User yang masuk adalah $result");
+
+            FirebaseAuth.instance.authStateChanges().listen(
+              (User? user) {
+                if (user != null) {
+                  print("ini user id:\n");
+                  print(user.uid);
+
+                  Navigator.pushNamed(context, '/profile');
+                }
+              },
+            );
+          },
           style: ButtonStyle(
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
@@ -365,7 +390,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const SizedBox(
-                height: 60 - 12,
+                height: 60 - 20,
               ),
               emailTextField(),
               const SizedBox(
@@ -373,11 +398,11 @@ class _LoginPageState extends State<LoginPage> {
               ),
               passwordTextField(),
               const SizedBox(
-                height: 10,
+                height: 14,
               ),
               buttonRemember(),
               const SizedBox(
-                height: 10,
+                height: 14,
               ),
               buttonLogin(),
               const Spacer(),

@@ -144,7 +144,7 @@ class _RegisterPageState extends State<RegisterPage> {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              offset: Offset(0, 12),
+              offset: const Offset(0, 12),
               blurRadius: 48,
               color: purpleColor.withOpacity(0.6),
             ),
@@ -156,6 +156,8 @@ class _RegisterPageState extends State<RegisterPage> {
               emailController.text,
               passwordController.text,
             );
+
+            // return Navigator.pushNamed(context, 'wrapper');
           },
           style: ButtonStyle(
             shape: MaterialStateProperty.all(
@@ -373,7 +375,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               const SizedBox(
-                height: 60 - 12,
+                height: 60 - 20,
               ),
               emailTextField(),
               const SizedBox(

@@ -31,6 +31,7 @@ class AuthServices {
       );
       User firebaseUser = result.user!;
 
+      // print("ini firebase user $firebaseUser");
       return firebaseUser;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
