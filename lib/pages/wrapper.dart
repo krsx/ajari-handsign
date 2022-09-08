@@ -1,5 +1,5 @@
 import 'package:ajari_app_v2/main.dart';
-import 'package:ajari_app_v2/pages/home_page.dart';
+import 'package:ajari_app_v2/pages/home/main_page.dart';
 import 'package:ajari_app_v2/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +12,6 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     User? firebaseUser = Provider.of<User?>(context);
     print('test');
-    return (firebaseUser == null) ? LoginPage() : HomePage();
+    return (firebaseUser == null) ? LoginPage() : MainPage();
   }
 }

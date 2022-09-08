@@ -11,10 +11,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-      body: Center(
-        child: Text("Ini home page"),
+      child: Scaffold(
+        body: Center(
+          child: Text("Home"),
+        ),
       ),
-    ));
+    );
   }
 }

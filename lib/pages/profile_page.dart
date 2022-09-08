@@ -247,7 +247,7 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         child: ElevatedButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/home');
+            Navigator.pushNamed(context, '/main');
           },
           style: ButtonStyle(
             shape: MaterialStateProperty.all(
