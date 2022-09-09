@@ -6,24 +6,31 @@ class ArtikelCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(24),
+    return Container(
+      width: 200,
+      height: 100,
       child: Stack(
         children: [
           Image.asset(
             "assets/images/article1.png",
+            fit: BoxFit.cover,
           ),
           Align(
             alignment: Alignment.bottomLeft,
             child: Row(
               children: [
-                // Text(
-                //   "Perkembangan Bahasa Isyarat di Bali",
-                //   style: mediumTextStyle.copyWith(
-                //     fontSize: 10,
-                //     color: whiteColor,
-                //   ),
-                // ),
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: 140,
+                  ),
+                  child: Text(
+                    "Perkembangan Bahasa Isyarat di Bali",
+                    style: mediumTextStyle.copyWith(
+                      fontSize: 12,
+                      color: whiteColor,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
