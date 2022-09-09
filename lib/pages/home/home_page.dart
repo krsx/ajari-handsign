@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
             focusNodeSearch.requestFocus();
           },
           child: Container(
-            height: 60,
+            height: 50,
             width: double.infinity - 48,
             decoration: BoxDecoration(
               // color: (focusNodeEmail.hasFocus) ? purpleColor : grayColor,
@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                     style: regulerTextStyle,
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Password',
+                      hintText: 'Cari',
                       hintStyle: regulerTextStyle.copyWith(
                         color: darkGrayColor,
                       ),
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 24,
           ),
           Padding(
@@ -130,6 +130,9 @@ class _HomePageState extends State<HomePage> {
               "Artikel",
               style: semiBoldTextStyle.copyWith(fontSize: 16),
             ),
+          ),
+          const SizedBox(
+            height: 10,
           ),
           Container(
             height: 140,

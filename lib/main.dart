@@ -3,6 +3,7 @@ import 'package:ajari_app_v2/pages/home/home_page.dart';
 import 'package:ajari_app_v2/pages/home/kamus_page.dart';
 import 'package:ajari_app_v2/pages/home/main_page.dart';
 import 'package:ajari_app_v2/pages/home/translate_page.dart';
+import 'package:ajari_app_v2/pages/splash_page.dart';
 import 'package:ajari_app_v2/pages/wrapper.dart';
 import 'package:ajari_app_v2/pages/introduction_page.dart';
 import 'package:ajari_app_v2/pages/login_page.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       routes: {
+        '/': (context) => const SplashPage(),
         '/intro': (context) => const IntroductionPage(),
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
@@ -57,7 +59,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: IntroductionPage(),
+      initialRoute: '/',
     );
   }
 }

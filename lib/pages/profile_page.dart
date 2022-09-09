@@ -48,6 +48,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
     Future alertFillProfile() {
       return showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
@@ -82,7 +83,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       shadowColor: MaterialStateProperty.all(purpleColor),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/intro');
+                    },
                     child: Text(
                       "Tidak",
                       style: mediumTextStyle.copyWith(
