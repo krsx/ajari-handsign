@@ -1,4 +1,5 @@
 import 'package:ajari_app_v2/pages/home/home_page.dart';
+import 'package:ajari_app_v2/pages/home/kamus_page.dart';
 import 'package:ajari_app_v2/pages/home/translate_page.dart';
 import 'package:ajari_app_v2/utils/theme.dart';
 import 'package:flutter/material.dart';
@@ -16,19 +17,43 @@ class _HomePageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     Widget translateButton() {
-      return FloatingActionButton(
-        backgroundColor: purpleColor,
-        child: Image.asset(
-          "assets/images/icon_camera.png",
-          width: 26,
+      return Container(
+        height: 68,
+        width: 68,
+        child: FittedBox(
+          child: FloatingActionButton(
+            backgroundColor: purpleColor,
+            // elevation: 10,
+            child: Container(
+              // padding: EdgeInsets.all(0),
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(100),
+                boxShadow: [
+                  BoxShadow(
+                    offset: const Offset(0, 15),
+                    blurRadius: 24,
+                    spreadRadius: 20,
+                    color: purpleColor.withOpacity(0.6),
+                  ),
+                ],
+              ),
+              child: Image.asset(
+                "assets/images/icon_camera.png",
+                width: 26,
+              ),
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context, '/translate');
+            },
+          ),
         ),
-        onPressed: () {},
       );
     }
 
     Widget customBottomNavbar() {
       return ClipRRect(
-        borderRadius: BorderRadius.vertical(
+        borderRadius: const BorderRadius.vertical(
           top: Radius.circular(30),
         ),
         child: BottomAppBar(
@@ -53,18 +78,25 @@ class _HomePageState extends State<MainPage> {
               color: purpleColor,
             ),
             unselectedItemColor: darkGrayColor,
-            items: [
+            showUnselectedLabels: false,
+            items: const [
               BottomNavigationBarItem(
-                icon: Image.asset(
-                  "assets/images/icon_home_v2.png",
-                  width: 25,
+                icon: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 2),
+                  child: Icon(
+                    Icons.house,
+                    size: 34,
+                  ),
                 ),
                 label: 'Beranda',
               ),
               BottomNavigationBarItem(
-                icon: Image.asset(
-                  "assets/images/icon_home_v2.png",
-                  width: 25,
+                icon: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 2),
+                  child: Icon(
+                    Icons.book,
+                    size: 34,
+                  ),
                 ),
                 label: 'Kamus',
               ),
@@ -80,10 +112,7 @@ class _HomePageState extends State<MainPage> {
           return HomePage();
           break;
         case 1:
-          return TranslatePage();
-          break;
-        case 2:
-          return TranslatePage();
+          return KamusPage();
           break;
         default:
           return SizedBox();
@@ -95,6 +124,7 @@ class _HomePageState extends State<MainPage> {
       floatingActionButton: translateButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: customBottomNavbar(),
+      resizeToAvoidBottomInset: false,
       body: body(),
     );
   }

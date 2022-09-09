@@ -1,5 +1,8 @@
 import 'package:ajari_app_v2/helper/auth_services.dart';
+import 'package:ajari_app_v2/pages/home/home_page.dart';
+import 'package:ajari_app_v2/pages/home/kamus_page.dart';
 import 'package:ajari_app_v2/pages/home/main_page.dart';
+import 'package:ajari_app_v2/pages/home/translate_page.dart';
 import 'package:ajari_app_v2/pages/wrapper.dart';
 import 'package:ajari_app_v2/pages/introduction_page.dart';
 import 'package:ajari_app_v2/pages/login_page.dart';
@@ -38,6 +41,9 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => const ProfilePage(),
         '/wrapper': (context) => const Wrapper(),
         '/main': (context) => const MainPage(),
+        '/home': (context) => const HomePage(),
+        '/kamus': (context) => const KamusPage(),
+        '/translate': (context) => const TranslatePage(),
       },
       theme: ThemeData(
         // This is the theme of your application.

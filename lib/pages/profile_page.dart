@@ -46,6 +46,106 @@ class _ProfilePageState extends State<ProfilePage> {
     bool emailFill = false;
     bool telponFill = false;
 
+    Future alertFillProfile() {
+      return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18),
+            ),
+            title: Text(
+              "Ayo isi profil anda",
+              style: semiBoldTextStyle.copyWith(
+                fontSize: 20,
+              ),
+            ),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: [
+                  Text(
+                    "Lengkapi profile Anda untuk dapat melanjutkan ke halaman utama",
+                    style: regulerTextStyle,
+                    textAlign: TextAlign.justify,
+                  ),
+                ],
+              ),
+            ),
+            actions: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    style: ButtonStyle(
+                      overlayColor: MaterialStateProperty.all(
+                        purpleColor.withOpacity(0.25),
+                      ),
+                      shadowColor: MaterialStateProperty.all(purpleColor),
+                    ),
+                    onPressed: () {},
+                    child: Text(
+                      "Tidak",
+                      style: mediumTextStyle.copyWith(
+                        color: purpleColor,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 12,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0, 12),
+                          blurRadius: 48,
+                          color: purpleColor.withOpacity(0.6),
+                        ),
+                      ],
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      style: ButtonStyle(
+                        // padding: MaterialStateProperty.all(
+                        //   EdgeInsets.all(20),
+                        // ),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        backgroundColor: MaterialStateProperty.all(purpleColor),
+                        elevation: MaterialStateProperty.all(0),
+                      ),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 18,
+                          vertical: 6,
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Ya",
+                            style: mediumTextStyle.copyWith(
+                              fontSize: 18,
+                              color: whiteColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     Widget profilePicture() {
       return Center(
         child: ConstrainedBox(
@@ -247,7 +347,13 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         child: ElevatedButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/main');
+            if (controllerUsername.text.isEmpty ||
+                controllerEmail.text.isEmpty ||
+                controllerTelp.text.isEmpty) {
+              alertFillProfile();
+            } else {
+              Navigator.pushNamed(context, '/main');
+            }
           },
           style: ButtonStyle(
             shape: MaterialStateProperty.all(
@@ -272,106 +378,6 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ),
-      );
-    }
-
-    Future alertFillProfile() {
-      return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(18),
-            ),
-            title: Text(
-              "Ayo isi profil anda",
-              style: semiBoldTextStyle.copyWith(
-                fontSize: 20,
-              ),
-            ),
-            content: SingleChildScrollView(
-              child: ListBody(
-                children: [
-                  Text(
-                    "Lengkapi profile Anda untuk dapat melanjutkan ke halaman utama",
-                    style: regulerTextStyle,
-                    textAlign: TextAlign.justify,
-                  ),
-                ],
-              ),
-            ),
-            actions: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    style: ButtonStyle(
-                      overlayColor: MaterialStateProperty.all(
-                        purpleColor.withOpacity(0.25),
-                      ),
-                      shadowColor: MaterialStateProperty.all(purpleColor),
-                    ),
-                    onPressed: () {},
-                    child: Text(
-                      "Tidak",
-                      style: mediumTextStyle.copyWith(
-                        color: purpleColor,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          offset: Offset(0, 12),
-                          blurRadius: 48,
-                          color: purpleColor.withOpacity(0.6),
-                        ),
-                      ],
-                    ),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      style: ButtonStyle(
-                        // padding: MaterialStateProperty.all(
-                        //   EdgeInsets.all(20),
-                        // ),
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                        ),
-                        backgroundColor: MaterialStateProperty.all(purpleColor),
-                        elevation: MaterialStateProperty.all(0),
-                      ),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 18,
-                          vertical: 6,
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Ya",
-                            style: mediumTextStyle.copyWith(
-                              fontSize: 18,
-                              color: whiteColor,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ],
-          );
-        },
       );
     }
 
