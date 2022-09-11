@@ -1,13 +1,39 @@
 import 'package:ajari_app_v2/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ArtikelCard extends StatelessWidget {
-  const ArtikelCard({Key? key}) : super(key: key);
+  final String imageUrl;
+  final String title;
+
+  const ArtikelCard({
+    Key? key,
+    required this.imageUrl,
+    required this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(right: 20),
+    Future<void> urlLauncher() async {
+      Uri url = Uri.parse("https://pub.dev/packages/url_launcher/example");
+      // if (await canLaunchUrl(url)) {
+      //   await launchUrl(
+      //     url,
+      //     mode: LaunchMode.externalApplication,
+      //   );
+      // } else {
+      //   throw 'Url tidak bisa dilaunch $url';
+      // }
+      await launchUrl(
+        url,
+        mode: LaunchMode.externalApplication,
+      );
+    }
+
+    return GestureDetector(
+      onTap: () {
+        urlLauncher();
+      },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Container(
@@ -15,8 +41,8 @@ class ArtikelCard extends StatelessWidget {
           child: Stack(
             children: [
               Image.asset(
-                "assets/images/article1.png",
-                fit: BoxFit.fitWidth,
+                imageUrl,
+                fit: BoxFit.cover,
               ),
               Align(
                 alignment: Alignment.bottomCenter,
@@ -32,12 +58,13 @@ class ArtikelCard extends StatelessWidget {
                       Expanded(
                         child: ConstrainedBox(
                           constraints: BoxConstraints(
-                            maxWidth: 150,
+                            maxWidth: 120,
                           ),
                           child: Text(
-                            "Perkembangan Bahasa Isyarat di Bali",
+                            title,
+                            // overflow: TextOverflow.ellipsis,
                             style: mediumTextStyle.copyWith(
-                              fontSize: 12,
+                              fontSize: 11,
                               color: whiteColor,
                             ),
                           ),

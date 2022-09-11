@@ -13,6 +13,23 @@ class _HomePageState extends State<HomePage> {
   TextEditingController searchController = TextEditingController();
   late FocusNode focusNodeSearch;
 
+  List imageArtikel = [
+    'assets/images/article1.png',
+    'assets/images/article2.png',
+    'assets/images/article1.png',
+  ];
+
+  List titleArtikel = [
+    'Perkembangan Bahasa Isyarat di Bali ',
+    'Manfaat Belajar Bahasa Isyarat Menurut Para Ahli',
+    'Bagaimana Pendidikan Anak Tuna Rungu yang Baik dan Benar',
+  ];
+
+  bool selectSemua = false;
+  bool selectMudah = false;
+  bool selectSedang = false;
+  bool selectSulit = false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -121,9 +138,6 @@ class _HomePageState extends State<HomePage> {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(
-            height: 24,
-          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Text(
@@ -136,23 +150,197 @@ class _HomePageState extends State<HomePage> {
           ),
           Container(
             height: 140,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
+            child: ListView.builder(
               physics: BouncingScrollPhysics(),
-              children: [
-                ArtikelCard(),
-                ArtikelCard(),
-                ArtikelCard(),
-              ],
+              scrollDirection: Axis.horizontal,
+              itemCount: imageArtikel.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.only(
+                    left: (index == 0) ? 24 : 0,
+                    right: (index == imageArtikel.length) ? 0 : 20,
+                  ),
+                  child: ArtikelCard(
+                    imageUrl: imageArtikel[index],
+                    title: titleArtikel[index],
+                  ),
+                );
+              },
             ),
           )
         ],
       );
     }
 
+    Widget categories() {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          SizedBox(
+            width: 24,
+          ),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                selectSemua = !selectSemua;
+                if (selectSedang) {
+                  selectSedang = false;
+                }
+                if (selectSulit) {
+                  selectSulit = false;
+                }
+                if (selectMudah) {
+                  selectMudah = false;
+                }
+                print(selectSemua);
+              });
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 10,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18),
+                color: (selectSemua) ? purpleColor : whiteColor,
+                border: Border.all(
+                  color: purpleColor,
+                  width: 2,
+                ),
+              ),
+              child: Text(
+                "Semua",
+                style: mediumTextStyle.copyWith(
+                  fontSize: 12,
+                  color: (selectSemua) ? whiteColor : purpleColor,
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                selectMudah = !selectMudah;
+                if (selectSedang) {
+                  selectSedang = false;
+                }
+                if (selectSulit) {
+                  selectSulit = false;
+                }
+                if (selectSemua) {
+                  selectSemua = false;
+                }
+                print(selectMudah);
+              });
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 10,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18),
+                color: (selectMudah) ? purpleColor : whiteColor,
+                border: Border.all(
+                  color: purpleColor,
+                  width: 2,
+                ),
+              ),
+              child: Text(
+                "Mudah",
+                style: mediumTextStyle.copyWith(
+                  fontSize: 12,
+                  color: (selectMudah) ? whiteColor : purpleColor,
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                selectSedang = !selectSedang;
+                if (selectMudah) {
+                  selectMudah = false;
+                }
+                if (selectSulit) {
+                  selectSulit = false;
+                }
+                if (selectSemua) {
+                  selectSemua = false;
+                }
+                print(selectSedang);
+              });
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 10,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18),
+                color: (selectSedang) ? purpleColor : whiteColor,
+                border: Border.all(
+                  color: purpleColor,
+                  width: 2,
+                ),
+              ),
+              child: Text(
+                "Sedang",
+                style: mediumTextStyle.copyWith(
+                  fontSize: 12,
+                  color: (selectSedang) ? whiteColor : purpleColor,
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                selectSulit = !selectSulit;
+                if (selectSedang) {
+                  selectSedang = false;
+                }
+                if (selectMudah) {
+                  selectMudah = false;
+                }
+                if (selectSemua) {
+                  selectSemua = false;
+                }
+                print(selectSulit);
+              });
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 10,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18),
+                color: (selectSulit) ? purpleColor : whiteColor,
+                border: Border.all(
+                  color: purpleColor,
+                  width: 2,
+                ),
+              ),
+              child: Text(
+                "Sulit",
+                style: mediumTextStyle.copyWith(
+                  fontSize: 12,
+                  color: (selectSulit) ? whiteColor : purpleColor,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 24,
+          ),
+        ],
+      );
+    }
+
     Widget body() {
       return Container(
-        // padding: const EdgeInsets.symmetric(horizontal: 24),
+        // padding: con st EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -164,7 +352,14 @@ class _HomePageState extends State<HomePage> {
               height: 24,
             ),
             searchTextField(),
+            const SizedBox(
+              height: 24,
+            ),
             artikel(),
+            const SizedBox(
+              height: 24,
+            ),
+            categories(),
           ],
         ),
       );

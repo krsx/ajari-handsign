@@ -73,6 +73,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Expanded(
                 child: TextField(
+                  textInputAction: TextInputAction.next,
                   focusNode: focusNodeEmail,
                   controller: emailController,
                   style: regulerTextStyle,
@@ -119,6 +120,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Expanded(
                 child: TextField(
+                  textInputAction: TextInputAction.done,
                   obscureText: true,
                   focusNode: focusNodePassword,
                   controller: passwordController,

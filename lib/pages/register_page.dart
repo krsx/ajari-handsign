@@ -75,6 +75,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: TextField(
                   focusNode: focusNodeEmail,
                   controller: emailController,
+                  textInputAction: TextInputAction.next,
                   style: regulerTextStyle,
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -122,6 +123,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   obscureText: true,
                   focusNode: focusNodePassword,
                   controller: passwordController,
+                  textInputAction: TextInputAction.done,
                   style: regulerTextStyle,
                   decoration: InputDecoration(
                     border: InputBorder.none,

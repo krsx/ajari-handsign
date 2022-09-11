@@ -84,7 +84,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       shadowColor: MaterialStateProperty.all(purpleColor),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/intro');
+                      Navigator.pop(context);
+                      Navigator.pushNamed(context, '/main');
                     },
                     child: Text(
                       "Tidak",
@@ -222,6 +223,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               Expanded(
                 child: TextField(
+                  textInputAction: TextInputAction.next,
                   obscureText: true,
                   focusNode: focusNodeUsername,
                   controller: controllerUsername,
@@ -272,6 +274,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   obscureText: true,
                   focusNode: focusNodeEmail,
                   controller: controllerEmail,
+                  textInputAction: TextInputAction.next,
                   style: regulerTextStyle,
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -316,6 +319,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               Expanded(
                 child: TextField(
+                  textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.number,
                   obscureText: true,
                   focusNode: focusNodeTelp,
