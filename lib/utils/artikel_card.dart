@@ -32,16 +32,19 @@ class ArtikelCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        urlLauncher();
+        // urlLauncher();
       },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Container(
-          width: 200,
+          width: 184,
           child: Stack(
+            fit: StackFit.expand,
             children: [
-              Image.asset(
-                imageUrl,
+              FittedBox(
+                child: Image.asset(
+                  imageUrl,
+                ),
                 fit: BoxFit.cover,
               ),
               Align(
@@ -58,7 +61,7 @@ class ArtikelCard extends StatelessWidget {
                       Expanded(
                         child: ConstrainedBox(
                           constraints: BoxConstraints(
-                            maxWidth: 120,
+                            maxWidth: 100,
                           ),
                           child: Text(
                             title,
@@ -70,10 +73,10 @@ class ArtikelCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Image.asset(
-                        "assets/images/icon_arrow.png",
-                        width: 12,
-                      )
+                      // Image.asset(
+                      //   "assets/images/icon_arrow.png",
+                      //   width: 12,
+                      // )
                     ],
                   ),
                 ),
