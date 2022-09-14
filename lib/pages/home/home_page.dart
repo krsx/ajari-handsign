@@ -1,3 +1,7 @@
+import 'package:ajari_app_v2/pages/home/category/category_all.dart';
+import 'package:ajari_app_v2/pages/home/category/category_mudah.dart';
+import 'package:ajari_app_v2/pages/home/category/category_sedang.dart';
+import 'package:ajari_app_v2/pages/home/category/category_sulit.dart';
 import 'package:ajari_app_v2/utils/artikel_card.dart';
 import 'package:ajari_app_v2/utils/theme.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +13,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   TextEditingController searchController = TextEditingController();
   late FocusNode focusNodeSearch;
 
@@ -30,10 +35,13 @@ class _HomePageState extends State<HomePage> {
   bool selectSedang = false;
   bool selectSulit = false;
 
+  late TabController tabController;
+
   @override
   void initState() {
     // TODO: implement initState
     focusNodeSearch = FocusNode();
+    tabController = TabController(length: 4, vsync: this);
     super.initState();
   }
 
@@ -42,6 +50,7 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement dispose
     focusNodeSearch.dispose();
     searchController.dispose();
+    tabController.dispose();
     super.dispose();
   }
 
@@ -173,170 +182,280 @@ class _HomePageState extends State<HomePage> {
     }
 
     Widget categories() {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          SizedBox(
-            width: 24,
-          ),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                selectSemua = !selectSemua;
-                if (selectSedang) {
-                  selectSedang = false;
-                }
-                if (selectSulit) {
-                  selectSulit = false;
-                }
-                if (selectMudah) {
-                  selectMudah = false;
-                }
-                print(selectSemua);
-              });
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 10,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
-                color: (selectSemua) ? purpleColor : whiteColor,
-                border: Border.all(
-                  color: purpleColor,
-                  width: 2,
-                ),
-              ),
-              child: Text(
-                "Semua",
-                style: mediumTextStyle.copyWith(
-                  fontSize: 12,
-                  color: (selectSemua) ? whiteColor : purpleColor,
-                ),
-              ),
+      return Container(
+        padding: EdgeInsets.symmetric(horizontal: 24),
+        child: DefaultTabController(
+          length: 4,
+          child: TabBar(
+            overlayColor: MaterialStateProperty.all(Colors.transparent),
+            indicatorWeight: 0,
+            splashFactory: NoSplash.splashFactory,
+            controller: tabController,
+            unselectedLabelColor: purpleColor,
+            labelColor: whiteColor,
+            labelStyle: mediumTextStyle.copyWith(fontSize: 13),
+            labelPadding: const EdgeInsets.symmetric(
+              horizontal: 6,
+              vertical: 0,
             ),
-          ),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                selectMudah = !selectMudah;
-                if (selectSedang) {
-                  selectSedang = false;
-                }
-                if (selectSulit) {
-                  selectSulit = false;
-                }
-                if (selectSemua) {
-                  selectSemua = false;
-                }
-                print(selectMudah);
-              });
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 10,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
-                color: (selectMudah) ? purpleColor : whiteColor,
-                border: Border.all(
-                  color: purpleColor,
-                  width: 2,
-                ),
-              ),
-              child: Text(
-                "Mudah",
-                style: mediumTextStyle.copyWith(
-                  fontSize: 12,
-                  color: (selectMudah) ? whiteColor : purpleColor,
-                ),
-              ),
+            indicatorSize: TabBarIndicatorSize.label,
+            indicator: BoxDecoration(
+              borderRadius: BorderRadius.circular(18),
+              color: purpleColor,
             ),
-          ),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                selectSedang = !selectSedang;
-                if (selectMudah) {
-                  selectMudah = false;
-                }
-                if (selectSulit) {
-                  selectSulit = false;
-                }
-                if (selectSemua) {
-                  selectSemua = false;
-                }
-                print(selectSedang);
-              });
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 10,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
-                color: (selectSedang) ? purpleColor : whiteColor,
-                border: Border.all(
-                  color: purpleColor,
-                  width: 2,
+            tabs: [
+              Tab(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18),
+                    border: Border.all(
+                      color: purpleColor,
+                      width: 2,
+                    ),
+                  ),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Semua",
+                    ),
+                  ),
                 ),
               ),
-              child: Text(
-                "Sedang",
-                style: mediumTextStyle.copyWith(
-                  fontSize: 12,
-                  color: (selectSedang) ? whiteColor : purpleColor,
+              Tab(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18),
+                    border: Border.all(
+                      color: purpleColor,
+                      width: 2,
+                    ),
+                  ),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Mudah",
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                selectSulit = !selectSulit;
-                if (selectSedang) {
-                  selectSedang = false;
-                }
-                if (selectMudah) {
-                  selectMudah = false;
-                }
-                if (selectSemua) {
-                  selectSemua = false;
-                }
-                print(selectSulit);
-              });
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 10,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
-                color: (selectSulit) ? purpleColor : whiteColor,
-                border: Border.all(
-                  color: purpleColor,
-                  width: 2,
+              Tab(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18),
+                    border: Border.all(
+                      color: purpleColor,
+                      width: 2,
+                    ),
+                  ),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Sedang",
+                    ),
+                  ),
                 ),
               ),
-              child: Text(
-                "Sulit",
-                style: mediumTextStyle.copyWith(
-                  fontSize: 12,
-                  color: (selectSulit) ? whiteColor : purpleColor,
+              Tab(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18),
+                    border: Border.all(
+                      color: purpleColor,
+                      width: 2,
+                    ),
+                  ),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Sulit",
+                    ),
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
-          SizedBox(
-            width: 24,
-          ),
-        ],
+        ),
       );
     }
+
+    Widget categories_body() {
+      return Expanded(
+        child: TabBarView(
+          controller: tabController,
+          children: [
+            CategoryAll(),
+            CategoryMudah(),
+            CategorySedang(),
+            CategorySulit(),
+          ],
+        ),
+      );
+    }
+    // Widget categories() {
+    //   return Row(
+    //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+    //     children: [
+    //       SizedBox(
+    //         width: 24,
+    //       ),
+    //       GestureDetector(
+    //         onTap: () {
+    //           setState(() {
+    //             selectSemua = !selectSemua;
+    //             if (selectSedang) {
+    //               selectSedang = false;
+    //             }
+    //             if (selectSulit) {
+    //               selectSulit = false;
+    //             }
+    //             if (selectMudah) {
+    //               selectMudah = false;
+    //             }
+    //             print(selectSemua);
+    //           });
+    //         },
+    //         child: Container(
+    //           padding: EdgeInsets.symmetric(
+    //             horizontal: 16,
+    //             vertical: 10,
+    //           ),
+    //           decoration: BoxDecoration(
+    //             borderRadius: BorderRadius.circular(18),
+    //             color: (selectSemua) ? purpleColor : whiteColor,
+    //             border: Border.all(
+    //               color: purpleColor,
+    //               width: 2,
+    //             ),
+    //           ),
+    //           child: Text(
+    //             "Semua",
+    //             style: mediumTextStyle.copyWith(
+    //               fontSize: 12,
+    //               color: (selectSemua) ? whiteColor : purpleColor,
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //       GestureDetector(
+    //         onTap: () {
+    //           setState(() {
+    //             selectMudah = !selectMudah;
+    //             if (selectSedang) {
+    //               selectSedang = false;
+    //             }
+    //             if (selectSulit) {
+    //               selectSulit = false;
+    //             }
+    //             if (selectSemua) {
+    //               selectSemua = false;
+    //             }
+    //             print(selectMudah);
+    //           });
+    //         },
+    //         child: Container(
+    //           padding: EdgeInsets.symmetric(
+    //             horizontal: 16,
+    //             vertical: 10,
+    //           ),
+    //           decoration: BoxDecoration(
+    //             borderRadius: BorderRadius.circular(18),
+    //             color: (selectMudah) ? purpleColor : whiteColor,
+    //             border: Border.all(
+    //               color: purpleColor,
+    //               width: 2,
+    //             ),
+    //           ),
+    //           child: Text(
+    //             "Mudah",
+    //             style: mediumTextStyle.copyWith(
+    //               fontSize: 12,
+    //               color: (selectMudah) ? whiteColor : purpleColor,
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //       GestureDetector(
+    //         onTap: () {
+    //           setState(() {
+    //             selectSedang = !selectSedang;
+    //             if (selectMudah) {
+    //               selectMudah = false;
+    //             }
+    //             if (selectSulit) {
+    //               selectSulit = false;
+    //             }
+    //             if (selectSemua) {
+    //               selectSemua = false;
+    //             }
+    //             print(selectSedang);
+    //           });
+    //         },
+    //         child: Container(
+    //           padding: EdgeInsets.symmetric(
+    //             horizontal: 16,
+    //             vertical: 10,
+    //           ),
+    //           decoration: BoxDecoration(
+    //             borderRadius: BorderRadius.circular(18),
+    //             color: (selectSedang) ? purpleColor : whiteColor,
+    //             border: Border.all(
+    //               color: purpleColor,
+    //               width: 2,
+    //             ),
+    //           ),
+    //           child: Text(
+    //             "Sedang",
+    //             style: mediumTextStyle.copyWith(
+    //               fontSize: 12,
+    //               color: (selectSedang) ? whiteColor : purpleColor,
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //       GestureDetector(
+    //         onTap: () {
+    //           setState(() {
+    //             selectSulit = !selectSulit;
+    //             if (selectSedang) {
+    //               selectSedang = false;
+    //             }
+    //             if (selectMudah) {
+    //               selectMudah = false;
+    //             }
+    //             if (selectSemua) {
+    //               selectSemua = false;
+    //             }
+    //             print(selectSulit);
+    //           });
+    //         },
+    //         child: Container(
+    //           padding: EdgeInsets.symmetric(
+    //             horizontal: 16,
+    //             vertical: 10,
+    //           ),
+    //           decoration: BoxDecoration(
+    //             borderRadius: BorderRadius.circular(18),
+    //             color: (selectSulit) ? purpleColor : whiteColor,
+    //             border: Border.all(
+    //               color: purpleColor,
+    //               width: 2,
+    //             ),
+    //           ),
+    //           child: Text(
+    //             "Sulit",
+    //             style: mediumTextStyle.copyWith(
+    //               fontSize: 12,
+    //               color: (selectSulit) ? whiteColor : purpleColor,
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //       SizedBox(
+    //         width: 24,
+    //       ),
+    //     ],
+    //   );
+    // }
 
     Widget body() {
       return Container(
@@ -360,6 +479,7 @@ class _HomePageState extends State<HomePage> {
               height: 24,
             ),
             categories(),
+            categories_body(),
           ],
         ),
       );
