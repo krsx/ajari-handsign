@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/theme.dart';
+
 class CategoryMudah extends StatefulWidget {
   const CategoryMudah({Key? key}) : super(key: key);
 
@@ -12,6 +14,7 @@ class _CategoryMudahState extends State<CategoryMudah> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: whiteColor,
         body: Center(
           child: Text("Mudah"),
         ),

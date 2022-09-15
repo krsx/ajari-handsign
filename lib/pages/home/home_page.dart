@@ -282,6 +282,7 @@ class _HomePageState extends State<HomePage>
       return Expanded(
         child: TabBarView(
           controller: tabController,
+          physics: NeverScrollableScrollPhysics(),
           children: [
             CategoryAll(),
             CategoryMudah(),
@@ -482,6 +483,31 @@ class _HomePageState extends State<HomePage>
             categories_body(),
           ],
         ),
+        // child: Container(
+        //   width: MediaQuery.of(context).size.width - 48,
+        //   height: double.minPositive,
+        //   child: ListView(
+        //     children: [
+        //       const SizedBox(
+        //         height: 24,
+        //       ),
+        //       userProfile(),
+        //       const SizedBox(
+        //         height: 24,
+        //       ),
+        //       searchTextField(),
+        //       const SizedBox(
+        //         height: 24,
+        //       ),
+        //       artikel(),
+        //       const SizedBox(
+        //         height: 24,
+        //       ),
+        //       categories(),
+        //       categories_body(),
+        //     ],
+        //   ),
+        // ),
       );
     }
 

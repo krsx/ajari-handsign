@@ -23,7 +23,7 @@ class PelajaranCard extends StatelessWidget {
         ],
       ),
       child: Row(
-        children: [],
+        children: [Container()],
       ),
     );
   }

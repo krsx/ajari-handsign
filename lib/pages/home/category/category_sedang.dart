@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/theme.dart';
+
 class CategorySedang extends StatefulWidget {
   const CategorySedang({Key? key}) : super(key: key);
 
@@ -12,6 +14,7 @@ class _CategorySedangState extends State<CategorySedang> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: whiteColor,
         body: Center(
           child: Text("Sedang"),
         ),

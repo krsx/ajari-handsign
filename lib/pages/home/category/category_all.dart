@@ -1,3 +1,4 @@
+import 'package:ajari_app_v2/utils/theme.dart';
 import 'package:flutter/material.dart';
 
 class CategoryAll extends StatefulWidget {
@@ -12,8 +13,9 @@ class _CategoryAllState extends State<CategoryAll> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: whiteColor,
         body: Center(
-          child: Text("All"),
+          child: Text("Semua"),
         ),
       ),
     );
