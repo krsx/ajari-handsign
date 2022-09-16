@@ -1,3 +1,4 @@
+import 'package:ajari_app_v2/utils/pelajaran_card.dart';
 import 'package:ajari_app_v2/utils/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -14,8 +15,14 @@ class _CategoryAllState extends State<CategoryAll> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: whiteColor,
-        body: Center(
-          child: Text("Semua"),
+        body: ListView(
+          padding: EdgeInsets.symmetric(
+            horizontal: 24,
+            vertical: 20,
+          ),
+          children: [
+            PelajaranCard(),
+          ],
         ),
       ),
     );
